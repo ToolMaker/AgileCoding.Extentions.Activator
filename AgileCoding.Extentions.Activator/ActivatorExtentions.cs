@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Reflection;
     using System.Text;
-    using AgileCoding.Extentions.Exceptions;
     using AgileCoding.Extentions.Loggers;
     using AgileCoding.Library.Interfaces.Logging;
 
