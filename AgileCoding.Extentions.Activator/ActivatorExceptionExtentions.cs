@@ -8,7 +8,7 @@
 
     internal static class ActivatorExceptionExtentions
     {
-        public static string ToStringAll(this Exception ex)
+        public static string ToStringAll(this Exception? ex)
         {
             if (ex != null)
             {
@@ -39,7 +39,7 @@
             sb.AppendLine(endString);
         }
 
-        private static void CheckInnerException(Exception ex, StringBuilder sb)
+        private static void CheckInnerException(Exception? ex, StringBuilder sb)
         {
             if (ex != null)
             {
@@ -56,9 +56,9 @@
                 allLoaderExceptions.AppendLine($"Main Exception {Environment.NewLine}{ToStringAll(exception)}{Environment.NewLine}LoaderException(s) : {Environment.NewLine}");
 
                 var typeLoadException = exception as ReflectionTypeLoadException;
-                var loaderExceptions = typeLoadException.LoaderExceptions.ToList();
+                var loaderExceptions = typeLoadException?.LoaderExceptions.ToList();
 
-                loaderExceptions.ForEach((loaderException) =>
+                loaderExceptions?.ForEach((loaderException) =>
                 {
                     allLoaderExceptions.AppendLine($"{ToStringAll(loaderException)}");
 

@@ -9,7 +9,7 @@
 
     public static class ActivatorExtentions
     {
-        public static IReturnInstanceType CreateInstanceWithLogging<IReturnInstanceType>(this Type activatorType, ILogger logger, params object[] constructorParams)
+        public static IReturnInstanceType? CreateInstanceWithLogging<IReturnInstanceType>(this Type activatorType, ILogger logger, params object[] constructorParams)
         {
             try
             {
@@ -20,7 +20,7 @@
                     throw new ArgumentNullException($"{nameof(CreateInstanceWithLogging)} - Activator type was null. Unable to create instance");
                 }
 
-                return (IReturnInstanceType)Activator.CreateInstance(activatorType, constructorParams);
+                return (IReturnInstanceType?)Activator.CreateInstance(activatorType, constructorParams);
             }
             catch (MissingMethodException mme)
             {
@@ -35,7 +35,7 @@
             }
         }
 
-        public static IReturnInstanceType CreateInstanceWithoutLogging<IReturnInstanceType>(this Type activatorType, params object[] constructorParams)
+        public static IReturnInstanceType? CreateInstanceWithoutLogging<IReturnInstanceType>(this Type activatorType, params object[] constructorParams)
         {
             try
             {
@@ -44,7 +44,7 @@
                     throw new ArgumentNullException($"{nameof(CreateInstanceWithLogging)} - Activator type was null. Unable to create instance");
                 }
 
-                return (IReturnInstanceType)Activator.CreateInstance(activatorType, constructorParams);
+                return (IReturnInstanceType?)Activator.CreateInstance(activatorType, constructorParams);
             }
             catch (ReflectionTypeLoadException rtle)
             {
@@ -67,7 +67,7 @@
                 CreateConstructorInfoForMothodNotFoundException(activatorType, constructorParams, mme);
                 throw;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
